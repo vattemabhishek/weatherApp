@@ -15,6 +15,7 @@ const WeatherApp = () => {
   let api_key = '12cb110be33046de0e46603db618b33f'
   const [wicon, setWicon] = useState(cloud_icon)
   const [city, setCity] = useState('Hyderabad')
+
   async function fetchData() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${api_key}`
     let response = await fetch(url)
@@ -23,17 +24,12 @@ const WeatherApp = () => {
   }
 
   useEffect(() => {
-
     fetchData()
     console.log(city)
-
   }, [])
 
   const search = async () => {
     fetchData()
-    if (city==="") {
-      setCity('Hyderabad')
-    }
 
     if (wdata.weather[0].icon === '01d' || wdata.weather[0].icon === '01n') {
       setWicon(clear_icon)
